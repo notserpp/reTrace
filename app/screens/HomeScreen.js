@@ -6,25 +6,11 @@ import {
   TouchableOpacity,
   Platform
 } from "react-native";
+
 import MapView, { Marker, AnimatedRegion, Polyline } from "react-native-maps";
 import haversine from "haversine";//CALCULATES DISTANCE
-import {createStackNavigator} from 'react-navigation'
+import {StackNavigator} from 'react-navigation'
 
-import LoginScreen from './app/screens/LoginScreen'
-import HomeScreen from './app/screens/HomeScreen'
-
-export default class App extends React.Component{
-    render() {
-    return (
-    <AppNavigator/>
-    );
-    }
-}
-
-const AppNavigator = createStackNavigator({
-    LoginScreen: {screen : LoginScreen},
-    HomeScreen: {screen : HomeScreen}
-})
 
 const LATITUDE = 29.95539;
 const LONGITUDE = 78.07513;
@@ -169,3 +155,5 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   }
 });
+
+export default AnimatedMarkers;
