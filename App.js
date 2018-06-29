@@ -7,7 +7,7 @@ import {
   Platform
 } from "react-native";
 import MapView, { Marker, AnimatedRegion, Polyline } from "react-native-maps";
-import haversine from "haversine";
+import haversine from "haversine";//CALCULATES DISTANCE
 
 const LATITUDE = 29.95539;
 const LONGITUDE = 78.07513;
