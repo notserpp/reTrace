@@ -1,50 +1,44 @@
-import React from 'react'
-import { Text } from 'react-native'
-import { StackNavigator, DrawerNavigator } from 'react-navigation'
-import LoginScreen from '../Containers/LoginScreen'
-import SignupScreen from '../Containers/SignupScreen'
-import ForgottenPasswordScreen from '../Containers/ForgottenPasswordScreen'
-
-
-
-// drawer stack
-const DrawerStack = DrawerNavigator({
-
-})
-
-const DrawerNavigation = StackNavigator({
-  DrawerStack: { screen: DrawerStack }
-}, {
-  headerMode: 'float',
-  navigationOptions: ({navigation}) => ({
-    headerStyle: {backgroundColor: 'green'},
-    title: 'Logged In to your app!',
-    headerLeft: <Text onPress={() => navigation.navigate('DrawerOpen')}>Menu</Text>
-  })
-})
-
-// login stack
-const LoginStack = StackNavigator({
-  loginScreen: { screen: LoginScreen },
-  signupScreen: { screen: SignupScreen },
-  forgottenPasswordScreen: { screen: ForgottenPasswordScreen, navigationOptions: { title: 'Forgot Password' } }
-}, {
-  headerMode: 'float',
-  navigationOptions: {
-    headerStyle: {backgroundColor: 'red'},
-    title: 'You are not logged in'
+import React, { Component } from 'react';
+import { NavigationActions } from 'react-navigation';
+import { ScrollView, Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
+import styles from './Sidebar.style';
+import PropTypes from 'prop-types';
+class DrawerContent extends Component {
+navigateToScreen = (route) => () => {
+    const navigate = NavigationActions.navigate({
+      routeName: route
+    });
+    this.props.navigation.dispatch(navigate);
   }
-})
-
-// Manifest of possible screens
-const PrimaryNav = StackNavigator({
-  loginStack: { screen: LoginStack },
-  drawerStack: { screen: DrawerNavigation }
-}, {
-  // Default config for all screens
-  headerMode: 'none',
-  title: 'Main',
-  initialRouteName: 'loginStack'
-})
-
-export default PrimaryNav
+render () {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+        <Button
+         raised
+         icon={{name: 'trash-o', type: 'font-awesome', size: 20}}
+         title='Three'
+         buttonStyle={styles.button}
+         onPress={this.navigateToScreen('Three')}/>
+        <Button
+         raised
+         icon={{name: 'umbrella', type: 'font-awesome', size: 20}}
+         title='Four'
+         buttonStyle={styles.button}
+         onPress={this.navigateToScreen('Four')}/>
+        <Button
+         raised
+         icon={{name: 'user-circle', type: 'font-awesome', size:20}}
+         title='Five'
+         buttonStyle={styles.button}
+         onPress={this.navigateToScreen('Five')}/>
+        </ScrollView>
+      </View>
+    );
+  }
+}
+DrawerContent.propTypes = {
+  navigation: PropTypes.object
+};
+export default DrawerContent;
