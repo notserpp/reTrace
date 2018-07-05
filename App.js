@@ -13,7 +13,8 @@ import { createDrawerNavigator, StackNavigator, DrawerItems, SafeAreaView } from
 
 //custom files 
 import SettingsScreen from './app/screens/SettingsScreen'
-import HomeScreen from "./app/screens/HomeScreen";
+import HomeScreen from "./app/screens/HomeScreen"
+import FriendsScreen from "./app/screens/FriendsScreen"
 
 
 export default class App extends Component {
@@ -30,7 +31,7 @@ const CustomDrawerContentComponent = (props) => (
   <Container>
     <Header style={styles.drawerHeader}>
       <Body>
-        
+
       </Body>
     </Header>
     <Content>
@@ -49,6 +50,9 @@ const MyApp = createDrawerNavigator({
   },
   Settings: {
     screen: SettingsScreen
+  },
+  Friends: {
+    screen: FriendsScreen,
   }
 },
   {

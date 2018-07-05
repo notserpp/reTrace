@@ -19,8 +19,6 @@ import { Icon, Button, Container, Header, Content, Left } from 'native-base'
 //custom components imports 
 import CustomHeader from './components/CustomHeader'
 
-
-
 const LATITUDE = 29.95539;
 const LONGITUDE = 78.07513;
 const LATITUDE_DELTA = 0.009;
@@ -45,7 +43,7 @@ class AnimatedMarkers extends React.Component {
 
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(
-      position => {},
+      position => { },
       error => alert(error.message),
       {
         enableHighAccuracy: true,
@@ -103,16 +101,13 @@ class AnimatedMarkers extends React.Component {
     longitudeDelta: LONGITUDE_DELTA
   });
 
-
-
-
   static navigationOptions = ({ navigation }) => ({
     title: "Home",
     headerLeft: <Icon name="ios-menu" style={{ paddingLeft: 10 }} onPress={() => navigation.navigate('DrawerOpen')} />,
     drawerLabel: 'Home',
     drawerIcon: ({ tintColor }) => (
       <Image source={{ uri: 'https://png.icons8.com/ios/50/000000/home.png' }}
-      style={{ width: 20, height: 20 }} />
+        style={{ width: 20, height: 20 }} />
     ),
   })
 
@@ -128,39 +123,37 @@ class AnimatedMarkers extends React.Component {
           contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
 
           <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          showUserLocation
-          followUserLocation
-          loadingEnabled
-          region={this.getMapRegion()}
-        >
-          <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5} />
-          <Marker.Animated
-            ref={marker => {
-              this.marker = marker;
-            }}
-            coordinate={this.state.coordinate} />
-        </MapView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={[styles.bubble, styles.button]}>
-            <Text style={styles.bottomBarContent}>
-              {parseFloat(this.state.distanceTravelled).toFixed(2)} km
+            <MapView
+              style={styles.map}
+              showUserLocation
+              followUserLocation
+              loadingEnabled
+              region={this.getMapRegion()}
+            >
+              <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5} />
+              <Marker.Animated
+                ref={marker => {
+                  this.marker = marker;
+                }}
+                coordinate={this.state.coordinate} />
+            </MapView>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity style={[styles.bubble, styles.button]}>
+                <Text style={styles.bottomBarContent}>
+                  {parseFloat(this.state.distanceTravelled).toFixed(2)} km
             </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+              </TouchableOpacity>
+            </View>
+          </View>
 
-          
+
         </Content>
 
       </Container>
 
     )
   }
-
 }
-
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
