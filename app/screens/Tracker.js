@@ -1,24 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import {
+  StyleSheet,
   View,
   Text,
-  StyleSheet,
-  Image,
   TouchableOpacity,
   Platform
 } from "react-native";
 
 import MapView, { Marker, AnimatedRegion, Polyline } from "react-native-maps";
 import haversine from "haversine";//CALCULATES DISTANCE
-
-
-
-//library imports
-import { Icon, Button, Container, Header, Content, Left } from 'native-base'
-
-//custom components imports 
-import CustomHeader from './components/CustomHeader'
-
 
 
 const LATITUDE = 29.95539;
@@ -103,31 +93,9 @@ class AnimatedMarkers extends React.Component {
     longitudeDelta: LONGITUDE_DELTA
   });
 
-
-
-
-  static navigationOptions = ({ navigation }) => ({
-    title: "Home",
-    headerLeft: <Icon name="ios-menu" style={{ paddingLeft: 10 }} onPress={() => navigation.navigate('DrawerOpen')} />,
-    drawerLabel: 'Home',
-    drawerIcon: ({ tintColor }) => (
-      <Image source={{ uri: 'https://png.icons8.com/ios/50/000000/home.png' }}
-      style={{ width: 20, height: 20 }} />
-    ),
-  })
-
-
   render() {
     return (
-
-      <Container>
-
-        <CustomHeader title="Home" drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
-
-        <Content
-          contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
-
-          <View style={styles.container}>
+      <View style={styles.container}>
         <MapView
           style={styles.map}
           showUserLocation
@@ -150,15 +118,8 @@ class AnimatedMarkers extends React.Component {
           </TouchableOpacity>
         </View>
       </View>
-
-          
-        </Content>
-
-      </Container>
-
-    )
+    );
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -193,7 +154,5 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   }
 });
-
-
 
 export default AnimatedMarkers;

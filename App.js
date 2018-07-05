@@ -1,192 +1,81 @@
-import { StyleSheet, Platform, View, Text, Image, TouchableOpacity, YellowBox } from 'react-native';
-import React, { Component } from 'react';
-import { createDrawerNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation'
+import React, { Component } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image
+} from "react-native";
 
-import HomeScreen from './app/screens/HomeScreen'
+//library imports 
+import { Container, Content, Icon, Header, Body } from 'native-base'
+import { createDrawerNavigator, StackNavigator, DrawerItems, SafeAreaView } from 'react-navigation'
 
-class HamburgerIcon extends Component {
+//custom files 
+import SettingsScreen from './app/screens/SettingsScreen'
+import HomeScreen from "./app/screens/HomeScreen";
 
-  toggleDrawer=()=>{
 
-    console.log(this.props.navigationProps);
-
-    this.props.navigationProps.toggleDrawer();
-
-  }
+export default class App extends Component {
 
   render() {
-
     return (
-
-      <View style={{flexDirection: 'row'}}>
-
-        <TouchableOpacity onPress={this.toggleDrawer.bind(this)} >
-
-          <Image
-            source={{uri : 'https://reactnativecode.com/wp-content/uploads/2018/04/hamburger_icon.png'}}
-            style={{ width: 25, height: 25, marginLeft: 5}}
-          />
-
-        </TouchableOpacity>
-
-      </View>
-
-    );
-
-
+      <MyApp />
+    )
   }
 }
 
-class MainActivity extends Component {
+const CustomDrawerContentComponent = (props) => (
 
-  constructor(props) {
+  <Container>
+    <Header style={styles.drawerHeader}>
+      <Body>
+        
+      </Body>
+    </Header>
+    <Content>
+      <DrawerItems {...props} />
+    </Content>
 
-    super(props);
+  </Container>
 
-    YellowBox.ignoreWarnings([
-     'Warning: componentWillMount is deprecated',
-     'Warning: componentWillReceiveProps is deprecated',
-   ]);
+);
 
-  }
+const MyApp = createDrawerNavigator({
 
-   render()
-   {
-      return(
-
-         <View style = { styles.MainContainer }>
-
-            <Text style={{fontSize: 23}}> This is Activity - 1 </Text>
-
-         </View>
-      );
-   }
-}
-
-class SecondActivity extends Component {
-
-  constructor(props) {
-
-    super(props);
-
-    YellowBox.ignoreWarnings([
-     'Warning: componentWillMount is deprecated',
-     'Warning: componentWillReceiveProps is deprecated',
-   ]);
-
-  }
-
-     render()
-     {
-        return(
-
-           <View style = { styles.MainContainer }>
-
-              <Text style={{fontSize: 23}}> This is Activity - 2 </Text>
-
-           </View>
-        );
-     }
-  }
-
-  class ThirdActivity extends Component {
-
-    constructor(props) {
-
-      super(props);
-
-      YellowBox.ignoreWarnings([
-       'Warning: componentWillMount is deprecated',
-       'Warning: componentWillReceiveProps is deprecated',
-     ]);
-
-    }
-
-       render()
-       {
-          return(
-
-             <View style = { styles.MainContainer }>
-
-                <Text style={{fontSize: 23}}> This is Activity - 3 </Text>
-
-             </View>
-          );
-       }
-    }
-
-    const FirstActivity_StackNavigator = createStackNavigator({
-      First: {
-        screen: HomeScreen,
-        navigationOptions: ({ navigation }) => ({
-          title: 'Home Screen',
-          headerLeft : <HamburgerIcon navigationProps={ navigation }/>,
-
-          headerStyle: {
-            backgroundColor: '#FF9800'
-          },
-          headerTintColor: '#fff',
-        })
-      },
-    });
-
-
-    const SecondActivity_StackNavigator = createStackNavigator({
-      Second: {
-        screen: SecondActivity,
-        navigationOptions: ({ navigation }) => ({
-          title: 'SecondActivity',
-          headerLeft : <HamburgerIcon navigationProps={ navigation }/>,
-
-          headerStyle: {
-            backgroundColor: '#FF9800'
-          },
-          headerTintColor: '#fff',
-        })
-      },
-    });
-
-
-    const ThirdActivity_StackNavigator = createStackNavigator({
-      Third: {
-        screen: ThirdActivity,
-        navigationOptions: ({ navigation }) => ({
-          title: 'ThirdActivity',
-          headerLeft : <HamburgerIcon navigationProps={ navigation }/>,
-
-          headerStyle: {
-            backgroundColor: '#FF9800'
-          },
-          headerTintColor: '#fff',
-        })
-      },
-    });
-
-export default MyDrawerNavigator = createDrawerNavigator({
+  // For each screen that you can navigate to, create a new entry like this:
   Home: {
-    screen: FirstActivity_StackNavigator
+    screen: HomeScreen,
   },
-
-  SecondStack: {
-    screen: SecondActivity_StackNavigator
-  },
-
-  ThirdStack: {
-    screen: ThirdActivity_StackNavigator
+  Settings: {
+    screen: SettingsScreen
   }
-});
+},
+  {
+    initialRouteName: 'Home',
+    drawerPosition: 'left',
+    contentComponent: CustomDrawerContentComponent,
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToggleRoute: 'DrawerToggle'
+  });
 
 
 const styles = StyleSheet.create({
 
- MainContainer :{
-
-  flex:1,
-  paddingTop: (Platform.OS) === 'ios' ? 20 : 0,
-  alignItems: 'center',
-  justifyContent: 'center',
-
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  drawerHeader: {
+    height: 200,
+    backgroundColor: 'white'
+  },
+  drawerImage: {
+    height: 150,
+    width: 150,
+    borderRadius: 75
   }
 
-});
+})
