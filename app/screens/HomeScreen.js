@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Platform
+  Platform,
 } from "react-native";
 
 import MapView, { Marker, AnimatedRegion, Polyline } from "react-native-maps";
@@ -117,11 +117,13 @@ class AnimatedMarkers extends React.Component {
 
       <Container>
 
-        <CustomHeader title="Home" drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
+        <CustomHeader
 
-        <Content
-          contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+          drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
 
+        <Content contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+          <Image source={{ uri: 'https://previews.123rf.com/images/llecosta/llecosta1505/llecosta150500108/39673042-letter-r-logo-design-with-arrow-symbol.jpg' }}
+            style={{ width: 20, height: 20 }} />
           <View style={styles.container}>
             <MapView
               style={styles.map}

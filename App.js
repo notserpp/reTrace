@@ -31,7 +31,8 @@ const CustomDrawerContentComponent = (props) => (
   <Container>
     <Header style={styles.drawerHeader}>
       <Body>
-
+        <Image source={{ uri: 'https://i.imgur.com/AFs3hav.png' }}
+          style={{ width:200, height: 200 }} />
       </Body>
     </Header>
     <Content>

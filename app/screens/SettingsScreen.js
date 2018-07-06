@@ -33,11 +33,7 @@ class SettingsScreen extends Component {
                     drawerOpen={() => this.props.navigation.navigate("DrawerOpen")}
                 />
                 <Content contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
-                    <Button
-                        full
-                        onPress={() => this.props.navigation.navigate('Home')}>
-                        <Text style={{ color: 'white' }}>Go to Home screen</Text>
-                    </Button>
+     
                 </Content>
             </Container>
         )
